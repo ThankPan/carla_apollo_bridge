@@ -11,6 +11,8 @@ from transforms3d.euler import euler2quat
 
 import carla_common.transforms as trans
 
+from cyber_py import cyber_time
+
 from .sensor import Sensor
 
 from modules.drivers.gnss.proto.imu_pb2 import Imu
@@ -75,7 +77,8 @@ class ImuSensor(Sensor):
         :type carla_imu_measurement: carla.IMUMeasurement
         """
         imu_msg = CorrectedImu()
-        imu_msg.header.CopyFrom(self.get_msg_header(timestamp=carla_imu_measurement.timestamp))
+        imu_msg.header.timestamp_sec = cyber_time.Time.now().to_sec()
+        imu_msg.header.frame_id = "ego_vehicle/default"
 
         # Carla uses a left-handed coordinate convention (X forward, Y right, Z up).
         # Here, these measurements are converted to the right-handed ROS convention
