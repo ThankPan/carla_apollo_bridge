@@ -213,6 +213,7 @@ class ActorFactory(object):
             # get a random pose
             transform = secure_random.choice(
                 self.spawn_points) if self.spawn_points else carla.Transform()
+            self.node.loginfo("Ego Vehicle Random Pose:{}".format(transform))
 
         attach_to = None
         if req.attach_to != 0:

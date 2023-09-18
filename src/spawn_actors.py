@@ -73,7 +73,7 @@ def spawn_actors():
 
     index = 0
     for index, spawn_points in enumerate(_map.get_spawn_points()):
-        if index < 20:
+        if index < 10:
             try:
                 vehicle = world.spawn_actor(vehicle_blueprints[0], spawn_points)
                 actor_vehicles.append(vehicle)
@@ -84,6 +84,18 @@ def spawn_actors():
                     continue
                 else:
                     raise e            
+        if 10 < index < 20:
+            try:
+                vehicle = world.spawn_actor(vehicle_blueprints[0], spawn_points)
+                actor_vehicles.append(vehicle)
+                # vehicle.set_autopilot()
+            except RuntimeError as e:
+                if "collision at spawn position" in str(e):
+                    print("Failed to spawn vehicle at %s. Skipping...\n" % spawn_points)
+                    continue
+                else:
+                    raise e            
+
 
 
 

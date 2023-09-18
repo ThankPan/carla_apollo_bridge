@@ -93,3 +93,4 @@ class ObjectSensor(PseudoActor):
                 elif isinstance(actor, Static):
                     cyber_objects.perception_obstacle.append(actor.get_object_info())
         self.object_writer.write(cyber_objects)
+        # pass

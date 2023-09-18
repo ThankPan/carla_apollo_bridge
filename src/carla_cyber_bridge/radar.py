@@ -14,7 +14,7 @@ import numpy as np
 
 import math
 
-from carla_bridge.sensor.sensor import Sensor, create_radar
+from carla_cyber_bridge.sensor import Sensor, create_radar
 
 from modules.drivers.proto.pointcloud_pb2 import PointXYZIT, PointCloud
 from modules.drivers.proto.conti_radar_pb2 import ContiRadar, ContiRadarObs
